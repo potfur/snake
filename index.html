@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Snake</title>
+	<script src="js/KeyMapper.js"></script>
+	<script src="js/Position.js"></script>
+	<script src="js/Vector.js"></script>
+	<script src="js/Snake.js"></script>
+	<script src="js/Arena.js"></script>
+	<link href="" media="screen, print" rel="stylesheet"/>
+</head>
+<body>
+
+<pre style="font: 1em/1em Consolas;">
+</pre>
+
+<script type="text/javascript">
+	var arena = new Arena(50);
+	var canvas = document.body.querySelector('pre');
+	var keyMapper = new KeyMapper({
+		//left arrow
+		37: function() {
+			arena.goLeft();
+		},
+		//up arrow
+		38: function() {
+			arena.goUp();
+		},
+		//right arrow
+		39: function() {
+			arena.goRight();
+		},
+		//down arrow
+		40: function() {
+			arena.goDown();
+		}
+	});
+
+	keyMapper.observe(document.body);
+	canvas.innerHTML = arena.print();
+
+	setInterval(function() {
+		arena.tick();
+		canvas.innerHTML = arena.print();
+	}, 100)
+</script>
+
+</body>
+</html>
